@@ -90,6 +90,14 @@
       color: white;
       text-decoration: none;
     }
+    .payment-form {
+      background-color: #1a2930;
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+    .payment-form input {
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -121,6 +129,17 @@
       </form>
     </div>
 
+    <!-- Payment Section (hidden initially) -->
+    <div class="card" id="paymentSection" style="display: none;">
+      <h2>Enter Amount to Save</h2>
+      <form id="paymentForm" class="payment-form">
+        <label for="amount">Amount to Save (KES)</label>
+        <input type="number" id="amount" min="1" required />
+
+        <button type="submit">Proceed with Payment</button>
+      </form>
+    </div>
+
     <div class="card">
       <h2>Why SmartSave?</h2>
       <ul>
@@ -130,18 +149,24 @@
         <li><span class="highlight">Loyalty rewards</span>: repay fast, earn higher loan limits and lower interest!</li>
       </ul>
     </div>
-
-    <div class="card">
-      <h2>Your Dashboard</h2>
-      <p><strong>Balance Saved:</strong> KES 0</p>
-      <p><strong>Eligible Loan:</strong> Not yet qualified</p>
-      <p><strong>Emergency Loan Status:</strong> Not available</p>
-      <p><strong>Repayment Score:</strong> New User</p>
-      <div class="progress-bar">
-        <div class="progress" style="width: 0%;"></div>
-      </div>
-      <p>Save little, borrow big!</p>
-    </div>
   </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      // After successful signup, show the payment section
+      document.getElementById("paymentSection").style.display = "block";
+    });
+
+    document.getElementById("paymentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const amount = document.getElementById("amount").value;
+      alert(`You have entered KES ${amount} to save. Proceeding with payment.`);
+      
+      // Here you can add integration to your payment gateway (e.g., M-Pesa API)
+    });
+  </script>
 </body>
 </html>
