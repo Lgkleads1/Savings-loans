@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://savings-loans-nu.vercel.app/sitemap.xml
