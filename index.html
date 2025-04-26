@@ -2,35 +2,50 @@
 <html lang="en">
 <head>
   <title>SmartSave: Flexible M-Pesa Savings and Loans</title>
-<meta name="description" content="SmartSave offers innovative M-Pesa savings and loan solutions with flexible repayments and fast STK push integrations.">
-<meta name="keywords" content="SmartSave, M-Pesa, savings, loan, flexible repayments">
-<meta name="robots" content="index, follow">
+  <meta name="description" content="SmartSave offers innovative M-Pesa savings and loan solutions with flexible repayments and fast STK push integrations.">
+  <meta name="keywords" content="SmartSave, M-Pesa, savings, loan, flexible repayments">
+  <meta name="robots" content="index, follow">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartSave Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      background: url('https://images.unsplash.com/photo-1601991053714-b5c8be6de350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
       color: #fff;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar a {
+      color: #00e676;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .navbar img {
+      height: 50px;
     }
     .header {
       text-align: center;
-      padding: 3rem 1rem 2rem;
-      background: url('https://images.unsplash.com/photo-1610878180933-8445e4f3b852?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
-      backdrop-filter: brightness(0.6);
+      padding: 5rem 1rem 3rem;
+      background: rgba(0,0,0,0.5);
     }
     .header h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
     .header p {
-      font-size: 1.1rem;
-      max-width: 600px;
+      font-size: 1.3rem;
+      max-width: 700px;
       margin: 0 auto;
+      line-height: 1.6;
     }
     .content {
       padding: 2rem;
@@ -38,11 +53,11 @@
       margin: 0 auto;
     }
     .card {
-      background: #0a192f;
+      background: rgba(10, 25, 47, 0.85);
       border-radius: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
     .card h2 {
       margin-top: 0;
@@ -55,15 +70,19 @@
     form label {
       display: block;
       margin-top: 1rem;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
     }
     form input, form button {
       width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
       border: none;
       border-radius: 0.5rem;
       font-size: 1rem;
+    }
+    form input {
+      background: #ffffff10;
+      color: #fff;
     }
     form button {
       margin-top: 1rem;
@@ -71,53 +90,33 @@
       color: #fff;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .progress-bar {
-      height: 20px;
-      border-radius: 10px;
-      background-color: #444;
-      margin-top: 1rem;
-    }
-    .progress {
-      height: 100%;
-      border-radius: 10px;
-      background-color: #00c853;
-    }
-    .navbar {
-      background-color: #00b0ff;
-      padding: 10px;
-      display: flex;
-      justify-content: space-around;
-      color: white;
-      font-weight: bold;
-    }
-    .navbar a {
-      color: white;
-      text-decoration: none;
-    }
-    .payment-form {
-      background-color: #1a2930;
-      padding: 1.5rem;
-      border-radius: 1rem;
-    }
-    .payment-form input {
-      margin-top: 1rem;
+    form button:hover {
+      background-color: #00e676;
     }
   </style>
 </head>
+
 <body>
+
   <div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">My Loans</a>
-    <a href="#">Savings Progress</a>
-    <a href="#">Repayment Status</a>
+    <img src="https://via.placeholder.com/150x50.png?text=SmartSave+Logo" alt="SmartSave Logo">
+    <div>
+      <a href="#">Home</a>
+      <a href="#">My Loans</a>
+      <a href="#">Savings</a>
+      <a href="#">Repayments</a>
+    </div>
   </div>
+
   <div class="header">
     <h1>Welcome to SmartSave</h1>
-    <p>Your spare change has power. Save little. Borrow big. Win every day with flexible micro-loans and instant access!</p>
+    <p>Your spare change has power. Save little. Borrow big. Win every day with flexible micro-loans and instant access via M-Pesa!</p>
   </div>
 
   <div class="content">
+    <!-- User Registration Form -->
     <div class="card">
       <h2>Create Your Account</h2>
       <form id="signupForm">
@@ -134,7 +133,7 @@
       </form>
     </div>
 
-    <!-- Payment Section (hidden initially) -->
+    <!-- Payment Section -->
     <div class="card" id="paymentSection" style="display: none;">
       <h2>Enter Amount to Save</h2>
       <form id="paymentForm" class="payment-form">
@@ -145,33 +144,32 @@
       </form>
     </div>
 
+    <!-- Why SmartSave Section -->
     <div class="card">
       <h2>Why SmartSave?</h2>
       <ul>
-        <li><span class="highlight">Turn KES 1 into KES 1000+</span> — just by saving gradually.</li>
-        <li><span class="highlight">Emergency top-up loans</span> available after saving just KES 100.</li>
-        <li><span class="highlight">No paperwork, no CRB checks</span> — instant qualification and payout via M-Pesa.</li>
-        <li><span class="highlight">Loyalty rewards</span>: repay fast, earn higher loan limits and lower interest!</li>
+        <li><span class="highlight">Turn KES 1 into KES 1000+</span> by saving gradually with SmartSave.</li>
+        <li><span class="highlight">Emergency top-up loans</span> available after saving KES 100.</li>
+        <li><span class="highlight">No paperwork, no CRB checks</span> — instant qualification and payout!</li>
+        <li><span class="highlight">Loyalty rewards</span> — repay faster, unlock higher loan limits and lower interest rates!</li>
       </ul>
     </div>
+
   </div>
 
   <script>
     document.getElementById("signupForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      
-      // After successful signup, show the payment section
       document.getElementById("paymentSection").style.display = "block";
     });
 
     document.getElementById("paymentForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      
       const amount = document.getElementById("amount").value;
       alert(`You have entered KES ${amount} to save. Proceeding with payment.`);
-      
-      // Here you can add integration to your payment gateway (e.g., M-Pesa API)
+      // Payment API integration will come later.
     });
   </script>
+
 </body>
 </html>
