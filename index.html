@@ -188,8 +188,35 @@
   <script>
     document.getElementById("signupForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      document.getElementById("paymentSection").style.display = "block";
-      window.scrollTo({ top: document.getElementById("paymentSection").offsetTop - 70, behavior: 'smooth' });
+
+      const formData = new FormData(e.target);
+      const data = {
+        fullName: formData.get('fullName'),
+        idNumber: formData.get('idNumber'),
+        phone: formData.get('phone')
+      };
+
+      fetch('http://localhost:5000/register', {  // Change this URL to your backend's URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Registration successful!");
+          document.getElementById("paymentSection").style.display = "block";
+          window.scrollTo({ top: document.getElementById("paymentSection").offsetTop - 70, behavior: 'smooth' });
+        } else {
+          alert("Registration failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred. Please try again.");
+      });
     });
 
     document.getElementById("paymentForm").addEventListener("submit", function(e) {
